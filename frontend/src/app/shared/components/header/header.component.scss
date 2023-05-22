@@ -1,0 +1,24 @@
+#app-header {
+    display: inline-flex;
+    
+    .logo-image {
+        width: 10em;
+    }
+
+    span {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+        padding: 0 2em;
+    }
+
+    span:hover {
+        background-color: #e6e6e6;
+    }
+
+    p {
+        font-size: large;
+        font-weight: 500;
+    }
+}
