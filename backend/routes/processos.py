@@ -49,6 +49,7 @@ class ProcessosInfosInput(BaseModel):
 
 @router.post("/", status_code=200)
 async def get_processos_infos(request: ProcessosInfosInput):
+    # ! fix bug: set this method to get (remember you have to work with query parameters or maybe with path params)
     """
     Returns a list of all processos with some stats and a count
     of how many times the given movimento happened.
