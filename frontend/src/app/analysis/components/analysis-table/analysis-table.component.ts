@@ -34,9 +34,13 @@ export class AnalysisTableComponent
   @Input() data: readonly Processo[] = [];
   @Input() displayedColumns: string[] = [
     'NPU',
-    'movimentos',
-    'totalMovimentos',
     'duration',
+    'movimentosCount',
+    'pinnedMovimentoCount',
+    // 'NPU',
+    // 'pinnedMovimentoCount',
+    // 'duration',
+    // 'movimentosCount',
   ];
 
   dataSource!: MatTableDataSource<Processo>;

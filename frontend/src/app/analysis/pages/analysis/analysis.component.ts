@@ -13,6 +13,7 @@ export class AnalysisComponent {
 
   constructor(private readonly facade: AnalysisFacade) {
     facade.getProcessoData().subscribe((processoData: any) => {
+      console.log('analysis component: ' + processoData);
       this.processoList = processoData;
     });
   }
