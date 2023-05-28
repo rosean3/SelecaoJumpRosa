@@ -9,8 +9,8 @@ import { ProcessoInfo } from '../../types/ProcessoInfo';
   templateUrl: './analysis.component.html',
   styleUrls: ['./analysis.component.scss'],
 })
-export class AnalysisComponent implements OnInit {
-  selectedMovimento: string = 'A9';
+export class AnalysisComponent {
+  selectedMovimento: string = '';
   processoInfo: ProcessoInfo | null = null;
   processoList: Processo[] = [];
   id: string | null = null;
@@ -28,12 +28,9 @@ export class AnalysisComponent implements OnInit {
           ? processoData.processos
           : [];
         this.processoInfo = processoData;
+        if (this.processoInfo?.processName)
+          this.selectedMovimento = this.processoInfo.processName;
       });
     });
-  }
-  ngOnInit(): void {
-    if (this.id) this.selectedMovimento = 'A' + this.id;
-    else if (this.processoInfo?.processName)
-      this.selectedMovimento = this.processoInfo.processName;
   }
 }
