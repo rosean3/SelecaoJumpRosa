@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AnalysisState } from './state/analysis-state/analysis.state';
 import { AnalysisApi } from './api/analysis.api';
 import { Processo } from './types/Processo';
+import { ProcessoInfo } from './types/ProcessoInfo';
 
 @Injectable()
 export class AnalysisFacade {
@@ -15,7 +16,11 @@ export class AnalysisFacade {
     this.api.fetchProcessosDataByName(name).subscribe((processosData) => {
       const aux = processosData as Object;
       const processos = aux['cases' as keyof typeof aux] as unknown;
-      this.state.setProcessoData(processos as Processo[]);
+      const processoInfo: ProcessoInfo = {
+        processName: name,
+        processos: processos as Processo[],
+      };
+      this.state.setProcessoData(processoInfo);
     });
   }
 

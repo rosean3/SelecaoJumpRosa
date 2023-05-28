@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AnalysisFacade } from '../../analysis.facade';
 import { Processo } from '../../types/Processo';
 import { ActivatedRoute } from '@angular/router';
+import { ProcessoInfo } from '../../types/ProcessoInfo';
 
 @Component({
   selector: 'app-analysis',
@@ -10,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AnalysisComponent implements OnInit {
   selectedMovimento: string = 'A9';
+  processoInfo: ProcessoInfo | null = null;
   processoList: Processo[] = [];
   id: string | null = null;
 
@@ -21,15 +23,17 @@ export class AnalysisComponent implements OnInit {
       this.id = params.get('id');
       if (this.id) this.facade.fetchProcessosData('A' + this.id);
 
-      facade.getProcessoData().subscribe((processoData: any) => {
-        this.processoList = processoData;
+      facade.getProcessoData().subscribe((processoData: ProcessoInfo) => {
+        this.processoList = processoData.processos
+          ? processoData.processos
+          : [];
+        this.processoInfo = processoData;
       });
     });
   }
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
-      console.log('this.id: ', this.id);
-      if (this.id) this.selectedMovimento = 'A' + this.id;
-    });
+    if (this.id) this.selectedMovimento = 'A' + this.id;
+    else if (this.processoInfo?.processName)
+      this.selectedMovimento = this.processoInfo.processName;
   }
 }

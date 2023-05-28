@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Processo } from '../../types/Processo';
 import { BehaviorSubject } from 'rxjs';
+import { ProcessoInfo } from '../../types/ProcessoInfo';
 
 @Injectable()
 export class AnalysisState {
-  private readonly processoData = new BehaviorSubject([] as Processo[]);
+  private readonly processoData = new BehaviorSubject({} as ProcessoInfo);
 
   /*BehaviorSubjects are a type of Observable that always emit their current value to new
   subscribers. This BehaviorSubject is used to manage the state of Processo data. */
@@ -17,7 +17,7 @@ export class AnalysisState {
   application can react to changes in processoData, but cannot directly modify the state -
   this ensures state immutability, which is a key principle in state management. */
 
-  public setProcessoData(processoData: Processo[]) {
+  public setProcessoData(processoData: ProcessoInfo) {
     this.processoData.next(processoData);
   }
   /*This is a public method that allows other parts of the application to update processoData.
