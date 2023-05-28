@@ -37,10 +37,6 @@ export class AnalysisTableComponent
     'duration',
     'movimentosCount',
     'pinnedMovimentoCount',
-    // 'NPU',
-    // 'pinnedMovimentoCount',
-    // 'duration',
-    // 'movimentosCount',
   ];
 
   dataSource!: MatTableDataSource<Processo>;

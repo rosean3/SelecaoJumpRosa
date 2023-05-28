@@ -10,20 +10,12 @@ export class AnalysisFacade {
     private readonly api: AnalysisApi
   ) {}
 
-  // public fetchProcessosData() {
-  //   this.api.fetchProcessosData().subscribe((processosData) => {
-  //     this.state.setProcessoData(processosData);
-  //     console.log('processosData: ', processosData);
-  //   });
-  // }
-
-  public fetchProcessosData() {
-    this.api.fetchProcessosDataByName('A9').subscribe((processosData) => {
-      //! fix the gambiarra
+  public fetchProcessosData(name?: string) {
+    if (!name) name = 'A9';
+    this.api.fetchProcessosDataByName(name).subscribe((processosData) => {
       const aux = processosData as Object;
-      const aux2 = aux['cases' as keyof typeof aux] as unknown;
-      this.state.setProcessoData(aux2 as Processo[]);
-      console.log('processosData: ', aux2);
+      const processos = aux['cases' as keyof typeof aux] as unknown;
+      this.state.setProcessoData(processos as Processo[]);
     });
   }
 

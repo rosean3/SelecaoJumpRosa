@@ -1,0 +1,11 @@
+<mat-card class="container">
+  <div class="card" *ngFor="let data of dataFromApi; let i = index">
+    <div class="small-text">
+      {{ smallTexts[i] }} <mat-icon matTooltip="Description">help_outline</mat-icon>
+      <!-- ! fix this description part -->
+    </div>
+    <div class="big-text">
+      {{ data }}
+    </div>
+  </div>
+</mat-card>

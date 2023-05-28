@@ -1,0 +1,15 @@
+#teste {
+  width: 300px;     /* or any width you want */
+  height: 200px;    /* or any height you want */
+  overflow: auto;   /* or 'scroll', 'hidden', etc. */
+}
+
+.tooltip {
+  position: absolute;
+  text-align: center;
+  padding: 5px;
+  background: lightblue;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+}
