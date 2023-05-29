@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ProcessoStats } from '../../types/ProcessoStats';
 import { ProcessoStatsApiService } from 'src/app/shared/services/stats-api.service';
+import convertSecondsToTime from 'src/app/shared/utils/second-converter';
 // import { YourApiService } from './your-api.service'; // replace with your service
 
 @Component({
@@ -8,8 +9,9 @@ import { ProcessoStatsApiService } from 'src/app/shared/services/stats-api.servi
   templateUrl: './flowchat-statistics.component.html',
   styleUrls: ['./flowchat-statistics.component.scss'],
 })
-export class FlowchartStatisticsComponent implements OnInit {
-  dataFromApi: number[] = [];
+export class FlowchartStatisticsComponent {
+  @Input() dataFromApi: any = null;
+
   smallTexts = [
     'Quantidade de movimentos',
     'Quantidade de processos',
@@ -25,18 +27,4 @@ export class FlowchartStatisticsComponent implements OnInit {
     'description 4',
     'description 5 ',
   ];
-
-  constructor(private apiService: ProcessoStatsApiService) {}
-
-  ngOnInit(): void {
-    this.apiService.getProcessStats().subscribe((data: ProcessoStats[]) => {
-      this.dataFromApi = data && [
-        data[0].movimentosCount,
-        data[0].casesCount,
-        data[0].avgCaseDuration,
-        data[0].avgMovimentoDuration,
-        data[0].avgMovimentosPerCase,
-      ];
-    });
-  }
 }

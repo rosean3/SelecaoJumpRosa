@@ -9,9 +9,8 @@ export class ProcessoStatsApiService {
   constructor(private readonly http: HttpClient) {}
 
   public getProcessStats() {
-    const teste = this.http
+    return this.http
       .get<ProcessoStats[]>(`${environment.API_BASE_URL}/api/processos/stats/`)
       .pipe(take(1));
-    return teste;
   }
 }

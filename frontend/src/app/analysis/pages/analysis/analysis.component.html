@@ -1,8 +1,14 @@
-<div id="app-analysis">
+<ng-container *ngIf="!isLoading; else loading">
+  <div id="app-analysis">
     <p class="title">
-        Movimento {{ selectedMovimento }}
+      Movimento {{ selectedMovimento }}
     </p>
-    <app-analysis-table
-        [data]="processoList"
-    ></app-analysis-table>
-</div>
+    <app-analysis-table [data]="processoList"></app-analysis-table>
+  </div>
+</ng-container>
+<ng-template #loading>
+  <div class="loading-animation">
+    <div class="spinner"></div>
+    <p>Loading...</p>
+  </div>
+</ng-template>

@@ -19,6 +19,7 @@ that help with presenting and interacting with the data in a table format. This 
 things like sorting the data and paginating it. */
 import { Processo } from '../../types/Processo';
 import { MatPaginator } from '@angular/material/paginator';
+import convertSecondsToTime from 'src/app/shared/utils/second-converter';
 
 @Component({
   selector: 'app-analysis-table',
@@ -50,18 +51,29 @@ export class AnalysisTableComponent
 
   ngOnInit(): void {
     const data = Object.assign([], this.data);
+    console.log('data: ', data);
     this.dataSource = new MatTableDataSource(data);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sortingDataAccessor = (item: any, property) => {
+      switch (property) {
+        case 'duration':
+          return item.duration[0];
+        default:
+          return item[property];
+      }
+    };
   }
 
   ngAfterViewInit(): void {
+    console.log('this.data2: ', this.data);
     this.dataSource.sort = this.sort;
-    // TODO: Fix paginator
-    // TODO: Sort not working on movimentos/totalMovimentos
+    this.dataSource.paginator = this.paginator;
   }
 
   ngOnChanges(): void {
     const data = Object.assign([], this.data);
     this.dataSource = new MatTableDataSource(data);
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 }

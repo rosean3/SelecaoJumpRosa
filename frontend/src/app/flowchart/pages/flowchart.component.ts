@@ -4,6 +4,9 @@ import { SafeHtml } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import * as d3 from 'd3';
 import { Router } from '@angular/router';
+import { ProcessoStatsApiService } from 'src/app/shared/services/stats-api.service';
+import convertSecondsToTime from 'src/app/shared/utils/second-converter';
+import { ProcessoStats } from '../types/ProcessoStats';
 
 @Component({
   selector: 'app-flowchart',
@@ -12,12 +15,14 @@ import { Router } from '@angular/router';
 })
 export class FlowchartComponent implements OnInit, OnDestroy {
   graph: SafeHtml | null = null;
+  dataFromApi: any = [];
+  isLoading: number = 2;
   private subscription: Subscription | null = null;
-  private teste: string = 'teste';
 
   constructor(
     private imageApiService: ImageApiService,
-    private router: Router
+    private router: Router,
+    private apiService: ProcessoStatsApiService
   ) {}
 
   ngOnInit() {
@@ -27,7 +32,9 @@ export class FlowchartComponent implements OnInit, OnDestroy {
         this.graph = graph;
         setTimeout(() => {
           const svg = d3.select('svg');
+
           const self = this;
+
           svg.selectAll('.node').each(function () {
             // Get the node and its title
             const node = d3.select(this);
@@ -63,22 +70,35 @@ export class FlowchartComponent implements OnInit, OnDestroy {
               .attr('x', x - 61)
               .attr('y', y + 13);
 
-            // ! Make a description appear here
-            // icon.on('hover', function () {
-            //   console.log(title);
-            // });
+            // Add mouseover event handler
+            icon.on('mouseover', function () {
+              icon.style('cursor', 'pointer');
+            });
 
-            node.on('click', () => {
+            icon.on('click', function () {
               self.router.navigate([`/analysis/${processNumber}`]);
             });
           });
         }, 0);
+        this.isLoading--;
       });
+
+    this.apiService.getProcessStats().subscribe((data: ProcessoStats[]) => {
+      this.dataFromApi = data && [
+        data[0].movimentosCount,
+        data[0].casesCount,
+        data[0].avgCaseDuration,
+        convertSecondsToTime(data[0].avgMovimentoDuration),
+        data[0].avgMovimentosPerCase,
+      ];
+      this.isLoading--;
+    });
   }
 
   ngOnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+    this.isLoading = 2;
   }
 }

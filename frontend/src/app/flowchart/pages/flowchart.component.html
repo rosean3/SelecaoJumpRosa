@@ -1,2 +1,10 @@
-<flowchat-statistics></flowchat-statistics>
-<app-flow-graph [graph]="graph"></app-flow-graph>
+<ng-container *ngIf="!isLoading; else loading">
+  <flowchat-statistics [dataFromApi]="dataFromApi"></flowchat-statistics>
+  <app-flow-graph [graph]="graph"></app-flow-graph>
+</ng-container>
+<ng-template #loading>
+  <div class="loading-animation">
+    <div class="spinner"></div>
+    <p>Loading...</p>
+  </div>
+</ng-template>
