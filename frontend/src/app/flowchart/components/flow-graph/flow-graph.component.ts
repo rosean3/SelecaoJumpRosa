@@ -1,4 +1,4 @@
-import { Input, Component, OnInit, OnDestroy } from '@angular/core';
+import { Input, Component } from '@angular/core';
 
 @Component({
   selector: 'app-flow-graph',

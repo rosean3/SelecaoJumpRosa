@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Processo } from '../types/Processo';
-// import { of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { of } from 'rxjs';
 

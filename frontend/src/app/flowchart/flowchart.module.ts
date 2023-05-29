@@ -9,12 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { FlowGraphComponent } from './components/flow-graph/flow-graph.component';
 
 @NgModule({
-  providers: [
-    // AnalysisState,
-    // AnalysisApi,
-    // AnalysisFacade,
-    // analysisInitializerProvider
-  ],
+  providers: [],
   declarations: [
     FlowchartComponent,
     FlowchartStatisticsComponent,

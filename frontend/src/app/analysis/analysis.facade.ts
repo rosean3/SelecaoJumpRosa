@@ -18,7 +18,7 @@ export class AnalysisFacade {
     }
     let processos: unknown = [];
 
-    // ? if you want to test with mocked information, comment out the following lines:
+    // ? if you want to test with mocked data, comment out the following lines:
     this.api.fetchProcessosDataByName(name).subscribe((processosData) => {
       if (!name) {
         processos = [];
@@ -48,7 +48,7 @@ export class AnalysisFacade {
       this.state.setProcessoData(processoInfo);
     });
 
-    // ? if you want to test with mocked information, uncomment the following lines:
+    // ? if you want to test with mocked data, uncomment the following lines:
     // this.api.fetchProcessosData().subscribe((processosData) => {
     //   const processoInfo: ProcessoInfo = {
     //     processName: name,

@@ -1,9 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ProcessoStats } from '../../types/ProcessoStats';
-import { ProcessoStatsApiService } from 'src/app/shared/services/stats-api.service';
-import convertSecondsToTime from 'src/app/shared/utils/second-converter';
-// import { YourApiService } from './your-api.service'; // replace with your service
-
+import { Component, Input } from '@angular/core';
 @Component({
   selector: 'flowchat-statistics',
   templateUrl: './flowchat-statistics.component.html',

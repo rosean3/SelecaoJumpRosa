@@ -10,23 +10,23 @@
 .spinner {
   width: 40px;
   height: 40px;
-  border: 4px solid #3498db; /* Blue border */
-  border-top: 4px solid transparent; /* Transparent border on top */
-  border-radius: 50%; /* Circle shape */
-  animation: spin 1s linear infinite; /* Animation */
+  border: 4px solid #3498db;
+  border-top: 4px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
   0% {
-    transform: rotate(0deg); /* Starting point */
+    transform: rotate(0deg);
   }
   100% {
-    transform: rotate(360deg); /* Ending point, one full rotation */
+    transform: rotate(360deg);
   }
 }
 
 .loading-animation p {
-  margin-top: 8px; /* Add spacing between the spinner and the text */
-  color: #555; /* Adjust the text color as needed */
-  font-weight: 500; /* Add font weight to the text */
+  margin-top: 8px;
+  color: #555;
+  font-weight: 500;
 }

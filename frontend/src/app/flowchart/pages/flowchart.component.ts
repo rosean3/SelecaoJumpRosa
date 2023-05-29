@@ -46,7 +46,7 @@ export class FlowchartComponent implements OnInit, OnDestroy {
             // Create an SVG group (g) for the icon, and translate it to the desired position
             const icon = node
               .append('g')
-              .attr('transform', 'translate(0, -10)');
+              .attr('transform', `translate(${x - 61}, ${y + 3})`);
 
             // Add a circle element with a border
             icon
@@ -54,9 +54,7 @@ export class FlowchartComponent implements OnInit, OnDestroy {
               .attr('r', 10)
               .attr('fill', 'blue')
               .attr('stroke', 'white')
-              .attr('stroke-width', 2)
-              .attr('cx', x - 61)
-              .attr('cy', y + 12);
+              .attr('stroke-width', 2);
 
             // Add a text element with a border to represent the icon
             icon
@@ -66,15 +64,14 @@ export class FlowchartComponent implements OnInit, OnDestroy {
               .attr('stroke', 'white')
               .attr('stroke-width', 0.5)
               .attr('text-anchor', 'middle')
-              .attr('dominant-baseline', 'middle')
-              .attr('x', x - 61)
-              .attr('y', y + 13);
+              .attr('dominant-baseline', 'middle');
 
             // Add mouseover event handler
             icon.on('mouseover', function () {
               icon.style('cursor', 'pointer');
             });
 
+            // On clic, navigate to the corresponding analysis page
             icon.on('click', function () {
               self.router.navigate([`/analysis/${processNumber}`]);
             });
