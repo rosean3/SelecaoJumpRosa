@@ -2,7 +2,7 @@
   <div class="card" *ngFor="let data of dataFromApi; let i = index">
     <div class="sub-container">
       <p>{{ smallTexts[i] }}</p>
-      <mat-icon class="icon" matTooltip="Description">help_outline</mat-icon>
+      <mat-icon class="icon" [matTooltip]="descriptions[i]">help_outline</mat-icon>
     </div>
     <div class="big-text">
       {{ data }}
