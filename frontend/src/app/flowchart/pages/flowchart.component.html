@@ -1,10 +1,6 @@
 <ng-container *ngIf="!isLoading; else loading">
-  <div id="app-analysis">
-    <p class="title">
-      Movimento {{ selectedMovimento }}
-    </p>
-    <app-analysis-table [data]="processoList"></app-analysis-table>
-  </div>
+  <flowchat-statistics [dataFromApi]="dataFromApi"></flowchat-statistics>
+  <app-flow-graph [graph]="graph"></app-flow-graph>
 </ng-container>
 <ng-template #loading>
   <div class="loading-animation">

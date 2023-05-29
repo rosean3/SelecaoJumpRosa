@@ -1,49 +1,35 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Processo } from '../types/Processo';
+// import { of } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { of } from 'rxjs';
 
 @Injectable()
 export class AnalysisApi {
+  constructor(private readonly http: HttpClient) {}
 
-  constructor(private readonly http: HttpClient) { }
+  range = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
   public fetchProcessosData() {
-    return of([
-      {
-        NPU: '0000000-00.0000.0.00.0000',
-        totalMovimentos: 1,
-        totalDuration: 10,
-      },
-      {
-        NPU: '0000000-00.0000.0.00.0001',
-        totalMovimentos: 2,
-        totalDuration: 20,
-      },
-      {
-        NPU: '0000000-00.0000.0.00.0002',
-        totalMovimentos: 3,
-        totalDuration: 30,
-      },
-      {
-        NPU: '0000000-00.0000.0.00.0003',
-        totalMovimentos: 4,
-        totalDuration: 40,
-      },
-      {
-        NPU: '0000000-00.0000.0.00.0004',
-        totalMovimentos: 5,
-        totalDuration: 50,
-      },
-      {
-        NPU: '0000000-00.0000.0.00.0005',
-        totalMovimentos: 6,
-        totalDuration: 60,
-      },
-    ] as Processo[])
+    return of(
+      this.range.map((i) => {
+        return {
+          NPU: (456907 + i).toString(),
+          movimentosCount: i,
+          duration: i > 5 ? i * 300 : i * 10000,
+          pinnedMovimentoCount: i,
+        } as Processo;
+      }) as Processo[]
+    );
   }
 
   public fetchProcessosDataByName(name: string) {
-    return this.http.get<Processo[]>(`/api/processos/${name}/`);
+    return this.http.post<Processo[]>(
+      `${environment.API_BASE_URL}/api/processos/`,
+      {
+        movimento: name,
+      }
+    );
   }
 }

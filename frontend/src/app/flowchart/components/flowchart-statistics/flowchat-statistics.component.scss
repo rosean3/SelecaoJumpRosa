@@ -1,0 +1,76 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0.7% 0 0.7% 1%;
+  height: 14%;
+  width: 98%;
+  border: 1px solid #d3d3d3; /* Grey border */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  border-left: 1px solid #d3d3d3;
+  padding: 0.7em;
+
+  &:first-child {
+    border-left: none;
+  }
+
+  .icon {
+    font-size: 1.5em;
+    height: 1.5em;
+    width: 1.5em;
+    margin-left: 7%;
+    display: flex;
+}
+
+  .sub-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+
+    p{
+      font-size: 0.8em;
+      color: #666666;
+    }
+
+    mat-icon {
+      padding-top: 0.4em;
+    }
+  }
+
+  .big-text {
+    font-size: 1.4em;
+    color: #333333;
+    font-weight: 500;
+  }
+}.loading-animation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3; /* Light gray border */
+  border-top: 4px solid #3498db; /* Blue border on top */
+  border-radius: 50%; /* Circle shape */
+  animation: spin 1s linear infinite; /* Animation */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); /* Starting point */
+  }
+  100% {
+    transform: rotate(360deg); /* Ending point, one full rotation */
+  }
+}
